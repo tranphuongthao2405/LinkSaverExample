@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
-    <nav>
+    <nav id="nav">
       <div class="container" id="navContainer">
         <h1 class="nav-header">Link Saver</h1>
         <a id="addButton">+</a>
@@ -15,13 +15,37 @@
     </nav>
 
     <div class="container">
-      <div class="panel" id="addLinkPanel">
-
+      <div class="panel hidden" id="addLinkPanel">
+        <h3 class="panel-heading">Add Link</h3>
+        <form id="addLinkForm">
+          <input
+            type="text"
+            name="title"
+            id="linkTitle"
+            class="form-control"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            name="url"
+            id="linkUrl"
+            class="form-control"
+            placeholder="URL"
+          />
+          <input
+            type="text"
+            name="category"
+            id="linkCategory"
+            class="form-control"
+            placeholder="Categories(comma separated)"
+          />
+          <div id="addedCategories"></div>
+          <input type="submit" id="submitButton" value="Submit" />
+          <input type="submit" id="cancelButton" value="Cancel" />
+        </form>
       </div>
 
-      <div id="LinkList">
-
-      </div>
+      <div id="linksList"></div>
     </div>
 
     <script src="app.js"></script>
