@@ -37,6 +37,12 @@ a:hover {
   display: none;
 }
 
+.header {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--main-grey);
+}
+
 /* navbar */
 #nav {
   height: 60px;
@@ -71,12 +77,6 @@ a:hover {
   margin: 10px;
 }
 
-.panel-heading {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: var(--main-grey);
-}
-
 /* form */
 .form-control {
   width: 100%;
@@ -90,7 +90,8 @@ a:hover {
 }
 
 /* button */
-input[type='submit'], button {
+input[type="submit"],
+button {
   padding: 8px 22px;
   border-radius: 5px;
   border: 1px solid var(--main-accent);
@@ -99,8 +100,45 @@ input[type='submit'], button {
   font-size: 16px;
 }
 
-input[type='submit']:hover, button:hover {
+input[type="submit"]:hover,
+button:hover {
   cursor: pointer;
-  color:var(--main-accent);
+  color: var(--main-accent);
   background-color: white;
+}
+
+.btn-sm {
+  font-size: 10px;
+  padding: 5px 10px;
+}
+
+/* link */
+.link {
+  position: relative;
+}
+
+.link-options {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.link-date {
+  font-size: 14px;
+  font-style: italic;
+}
+
+#addedCategories {
+  margin-bottom: 15px;
+}
+
+.category {
+  font-weight: bold;
+  padding: 5px;
+  margin: 5px 2px;
+  border: 1px solid var(--main-accent);
+  border-radius: 5px;
+  font-size: 10px;
+  background-color: var(--main-accent);
+  color: var(--light-accent-color);
 }
