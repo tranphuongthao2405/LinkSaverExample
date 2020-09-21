@@ -6,6 +6,7 @@ const addLinkPanel = document.querySelector("#addLinkPanel");
 const linksList = document.querySelector("#linksList");
 const addedCategories = document.querySelector("#addedCategories");
 
+let editIndex = -1;
 let linkCategories = [];
 let links = [
   {
@@ -25,29 +26,48 @@ let links = [
   },
 ];
 
+const deleteLink = (index) => {
+  links.splice(index, 1);
+  displayLinks();
+};
+
+const editLink = (index) => {
+  editIndex = index;
+  linkTitle.value = links[index].title;
+  linkUrl.value = links[index].url;
+  linkCategories = links[index].categories;
+  showFormPanel();
+};
+
 const displayLinks = () => {
+  let index = 0;
   linksList.innerHTML = "";
   for (let link of links) {
-    let linkHTMLString = `<div class="link panel">
-      <div class="link-options">
-        <button class="btn-sm">Delete</button>
-        <button class="btn-sm">Edit</button>
-      </div>
-      <a href="${link.url}">
-        <h1 class="link header">${link.title}</h1>
-      </a>
-      <p class="link-date">${Date.now()}</p>
-      <div class="categories">
-        Categories:`;
+    let linkHTMLString = `
+    <div class="flex-item">
+      <div class="link panel">
+        <div class="link-options">
+          <button class="btn-sm" onclick="deleteLink(${index})">Delete</button>
+          <button class="btn-sm" onclick="editLink(${index})">Edit</button>
+        </div>
+        <a href="${link.url}">
+          <h1 class="link header">${link.title}</h1>
+        </a>
+        <p class="link-date">${Date.now()}</p>
+        <div class="categories">
+          Categories:`;
     for (let category of link.categories) {
       linkHTMLString += `<span class="category">${category}</span>`;
     }
 
     linkHTMLString += `
+        </div>
       </div>
     </div>`;
 
     linksList.innerHTML += linkHTMLString;
+
+    index++;
   }
 };
 
@@ -71,6 +91,7 @@ const displayLinkCategories = () => {
 
 const showFormPanel = () => {
   addLinkPanel.classList.remove("hidden");
+  displayLinkCategories();
 };
 
 const hideFormPanel = () => {
@@ -110,7 +131,12 @@ submitButton.addEventListener("click", (e) => {
     categories,
   };
 
-  links.unshift(newLink);
+  if (editIndex === -1) {
+    links.unshift(newLink);
+  } else {
+    links[editIndex] = newLink;
+    editIndex = -1;
+  }
 
   clearLinkForm();
   displayLinkCategories();
