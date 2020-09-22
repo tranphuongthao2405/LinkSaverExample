@@ -43,6 +43,16 @@ a:hover {
   color: var(--main-grey);
 }
 
+.full-screen-opaque {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 5;
+}
+
 /* navbar */
 #nav {
   height: 60px;
@@ -61,11 +71,23 @@ a:hover {
 .nav-header {
   color: var(--light-accent-color);
   font-size: 20px;
+  transition: all 0.25s;
+}
+
+.nav-header:hover {
+  color: var(--main-accent);
+  letter-spacing: 10px;
+  transform: scale(1.05);
 }
 
 #addButton {
   font-size: 24px;
   color: var(--light-accent-color);
+  transition: transform 0.25s 0s;
+}
+
+#addButton:hover {
+  transform: scale(1.2);
 }
 
 @media only screen and (max-width: 786px) {
@@ -100,6 +122,20 @@ a:hover {
   color: var(--main-grey);
 }
 
+#addLinkContainer.hidden {
+  display: none;
+}
+
+#addLinkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addLinkPanel {
+  animation: slide-down 1s 0s ease-in;
+}
+
 /* button */
 input[type="submit"],
 button {
@@ -109,6 +145,7 @@ button {
   background-color: var(--main-accent);
   color: var(--light-accent-color);
   font-size: 16px;
+  transition: all 0.25s;
 }
 
 input[type="submit"]:hover,
@@ -172,5 +209,21 @@ button:hover {
 @media only screen and (min-width: 1200px) {
   .flex-item {
     flex-basis: 33%;
+  }
+}
+
+/* Animations */
+@keyframes slide-down {
+  0% {
+    transform: translateY(-1000px);
+  }
+  90% {
+    transform: translateY(25px);
+  }
+  95% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }

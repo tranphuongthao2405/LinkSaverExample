@@ -5,24 +5,28 @@ const cancelButton = document.querySelector("#cancelButton");
 const addLinkPanel = document.querySelector("#addLinkPanel");
 const linksList = document.querySelector("#linksList");
 const addedCategories = document.querySelector("#addedCategories");
+const addLinkContainer = document.querySelector("#addLinkContainer");
 
 let editIndex = -1;
 let linkCategories = [];
 let links = [
   {
-    title: "New Link 1",
-    url: "url1.com",
-    categories: ["node", "angular"],
+    title: "Wes Bos Courses",
+    url: "http://wesbos.com/courses/",
+    categories: ["Node", "ES6", "Flexbox", "React"],
+    date: new Date(),
   },
   {
-    title: "New Link 2",
-    url: "url2.com",
-    categories: ["js", "angular"],
+    title: "Traversy Media",
+    url: "https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA",
+    categories: ["Node", "CSS", "Javscript", "Angular"],
+    date: new Date(),
   },
   {
-    title: "New Link 3",
-    url: "url3.com",
-    categories: ["node", "bootstrap"],
+    title: "Colt Steele",
+    url: "https://www.udemy.com/user/coltsteele/",
+    categories: ["Node", "Javascript", "React", "MEAN", "Mongo"],
+    date: new Date(),
   },
 ];
 
@@ -39,6 +43,12 @@ const editLink = (index) => {
   showFormPanel();
 };
 
+const formatDate = (date) => {
+  return `${("0" + (date.getMonth() + 1)).slice(-2)}/${(
+    "0" + date.getDay()
+  ).slice(-2)}/${date.getFullYear()}`;
+};
+
 const displayLinks = () => {
   let index = 0;
   linksList.innerHTML = "";
@@ -53,7 +63,7 @@ const displayLinks = () => {
         <a href="${link.url}">
           <h1 class="link header">${link.title}</h1>
         </a>
-        <p class="link-date">${Date.now()}</p>
+        <p class="link-date">${formatDate(link.date)}</p>
         <div class="categories">
           Categories:`;
     for (let category of link.categories) {
@@ -90,12 +100,12 @@ const displayLinkCategories = () => {
 };
 
 const showFormPanel = () => {
-  addLinkPanel.classList.remove("hidden");
+  addLinkContainer.classList.remove("hidden");
   displayLinkCategories();
 };
 
 const hideFormPanel = () => {
-  addLinkPanel.classList.add("hidden");
+  addLinkContainer.classList.add("hidden");
   clearLinkForm();
 };
 
